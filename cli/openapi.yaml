@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: API
+  version: 1.0.0
+paths:
+  /list:
+    get:
+      summary: List the AI agents
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentsList'
+              example:
+                items:
+                  - name: agent1
+                  - name: agent2
+components:
+  schemas:
+    Agent:
+      type: object
+      properties:
+        name:
+          type: string
+    AgentsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'

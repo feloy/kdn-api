@@ -1,0 +1,84 @@
+#
+# Copyright (C) 2026 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: release
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+      branch:
+        description: 'Branch to use for the release'
+        required: true
+        default: main
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+
+  tag:
+    name: Tagging
+    runs-on: ubuntu-24.04
+    outputs:
+      githubTag: ${{ steps.TAG_UTIL.outputs.githubTag}}
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: setup Go
+        uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+        with:
+          go-version-file: 'cli/go/go.mod'          
+
+      - name: Generate tag utilities
+        id: TAG_UTIL
+        run: |
+            TAG_PATTERN=${{ github.event.inputs.version }}
+            echo "githubTag=v$TAG_PATTERN" >> ${GITHUB_OUTPUT}
+
+      - name: tag
+        run: |
+          git config --local user.name ${{ github.actor }}
+          git config --local user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+
+          # Generate the Go models
+          (cd cli/go && make gen)
+
+          # add generated file
+          git add cli/go/api.go
+
+          # commit the changes
+          git commit -m "chore: 🥁 tagging ${{ steps.TAG_UTIL.outputs.githubTag }} 🥳"
+          echo "Tagging with ${{ steps.TAG_UTIL.outputs.githubTag }}"
+          git tag ${{ steps.TAG_UTIL.outputs.githubTag }}
+          git push origin ${{ steps.TAG_UTIL.outputs.githubTag }}
+
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag: ${{ steps.TAG_UTIL.outputs.githubTag }}
+          name: ${{ steps.TAG_UTIL.outputs.githubTag }}
+          draft: false
+          prerelease: false

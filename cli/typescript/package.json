@@ -7,7 +7,7 @@
     "provenance": true,
     "access": "public"
   },
-  "license": "apache-2.0",
+  "license": "Apache-2.0",
   "types": "./index.d.ts",
   "scripts": {
     "clean": "rm -f index.d.ts",

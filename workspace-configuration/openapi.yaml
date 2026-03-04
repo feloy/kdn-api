@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  title: Workspace configuration 
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Workspace configuration
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceConfiguration'
+components:
+  schemas:
+    WorkspaceConfiguration:
+      type: object
+      properties:
+        name:
+          type: string

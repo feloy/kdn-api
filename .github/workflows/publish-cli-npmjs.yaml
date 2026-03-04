@@ -15,7 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: npmjs publish
+name: cli npmjs publish
 
 on:
   push:
@@ -24,7 +24,7 @@ on:
 
 jobs:
   publish:
-    name: Publish to npmjs
+    name: Publish CLI types to npmjs
     runs-on: ubuntu-24.04
     permissions:
       id-token: write # Required for OIDC

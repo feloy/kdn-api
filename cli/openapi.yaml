@@ -5,29 +5,57 @@ info:
 paths:
   /list:
     get:
-      summary: List the AI agents
+      summary: List the Workspaces
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AgentsList'
+                $ref: '#/components/schemas/WorkspacesList'
               example:
                 items:
-                  - name: agent1
-                  - name: agent2
+                  - id: d07830f8ce31df3dc3bbcbbb4cd94470338bd26b45a5def8fe59b3198223ff18
+                    name: workspace1
+                    paths:
+                      source: /home/user/workspace1
+                      configuration: /home/user/workspace1/.kortex
+                  - i: 20cb499a4561703e973631fa3036cc8be9a06b709759d23a7d7f6dd1df146d95
+                    name: workspace2
+                    paths:
+                      source: /home/user/workspace2
+                      configuration: /home/user/.kortex-cli/workspaces/workspace2
 components:
   schemas:
-    Agent:
+    WorkspacePaths:
       type: object
       properties:
+        source:
+          type: string
+        configuration:
+          type: string
+      required:
+      - source
+      - configuration
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
         name:
           type: string
-    AgentsList:
+        paths:
+          $ref: '#/components/schemas/WorkspacePaths'
+      required:
+      - id
+      - name
+      - paths
+    WorkspacesList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Agent'
+            $ref: '#/components/schemas/Workspace'
+      required:
+      - items

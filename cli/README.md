@@ -76,7 +76,43 @@ $ kortex-cli workspace list -o json
 }
 ```
 
-#### 5. Remove a workspace
+#### 5. Start a workspace
+
+```bash
+$ kortex-cli workspace start 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea -o json
+{
+  "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea"
+}
+```
+
+Or using the shorthand command:
+
+```bash
+$ kortex-cli start 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea -o json
+{
+  "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea"
+}
+```
+
+#### 6. Stop a workspace
+
+```bash
+$ kortex-cli workspace stop 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea -o json
+{
+  "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea"
+}
+```
+
+Or using the shorthand command:
+
+```bash
+$ kortex-cli stop 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea -o json
+{
+  "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea"
+}
+```
+
+#### 7. Remove a workspace
 
 ```bash
 $ kortex-cli workspace remove 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea -o json

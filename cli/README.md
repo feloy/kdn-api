@@ -51,6 +51,22 @@ $ kortex-cli init -v -o json
 {
   "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea",
   "name": "workspace1",
+  "project": "https://github.com/user/repo/",
+  "paths": {
+    "source": "/home/user/workspace1",
+    "configuration": "/home/user/workspace1/.kortex"
+  }
+}
+```
+
+With explicit project:
+
+```bash
+$ kortex-cli init --project my-project -v -o json
+{
+  "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea",
+  "name": "workspace1",
+  "project": "my-project",
   "paths": {
     "source": "/home/user/workspace1",
     "configuration": "/home/user/workspace1/.kortex"
@@ -67,6 +83,7 @@ $ kortex-cli workspace list -o json
     {
       "id": "2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea",
       "name": "workspace1",
+      "project": "https://github.com/user/repo/",
       "paths": {
         "source": "/home/user/workspace1",
         "configuration": "/home/user/workspace1/.kortex"

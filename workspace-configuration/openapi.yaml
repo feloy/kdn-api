@@ -61,6 +61,7 @@ components:
           description: Path in the workspace filesystem where the host path will be mounted. Can use $SOURCES or $HOME variables.
         ro:
           type: boolean
+          default: false
           description: Mount as read-only. Defaults to false (read-write).
 
     EnvironmentVariable:

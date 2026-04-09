@@ -2,7 +2,7 @@
   "name": "@kortex-hub/kortex-cli-api",
   "version": "0.0.1-next",
   "description": "TypeScript types for the kortex-cli",
-  "repository": "https://github.com/kortex-hub/kortex-cli-api",
+  "repository": "https://github.com/openkaiden/kdn-api",
   "publishConfig": {
     "provenance": true,
     "access": "public"

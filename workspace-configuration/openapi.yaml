@@ -30,6 +30,9 @@ paths:
                     value: "true"
                   - name: "API_KEY"
                     secret: "my-api-key"
+                skills:
+                  - /path/to/skill1
+                  - /path/to/skill2
 components:
   schemas:
     WorkspaceConfiguration:
@@ -45,6 +48,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnvironmentVariable'
+        skills:
+          type: array
+          items:
+            type: string
+          description: List of folders containing skills (SKILL.md and related files) to be provided to the agent.
 
     Mount:
       type: object

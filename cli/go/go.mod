@@ -1,4 +1,4 @@
-module github.com/kortex-hub/kortex-cli-api/cli/go
+module github.com/openkaiden/kdn-api/cli/go
 
 go 1.25.7
 

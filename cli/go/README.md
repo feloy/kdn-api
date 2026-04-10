@@ -1,16 +1,16 @@
-# Go module for kortex-cli
+# Go module for kdn
 
 Usage:
 
 ```shell
-go get github.com/kortex-hub/kortex-cli-api/cli/go@latest
+go get github.com/openkaiden/kdn-api/cli/go@latest
 ```
 
 ```go
 package mypackage
 
 import (
-  api "github.com/kortex-hub/kortex-cli-api/cli/go"
+  api "github.com/openkaiden/kdn-api/cli/go"
 )
 
 

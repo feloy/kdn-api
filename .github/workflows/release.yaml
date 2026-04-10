@@ -65,10 +65,10 @@ jobs:
           git config --local user.name ${{ github.actor }}
           git config --local user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
 
-          # Generate the Go models for kortex-cli
+          # Generate the Go models for kdn
           (cd cli/go && make gen)
 
-          # add generated file for kortex-cli
+          # add generated file for kdn
           git add cli/go/api.go
 
           # Generate the Go models for workspace configuration

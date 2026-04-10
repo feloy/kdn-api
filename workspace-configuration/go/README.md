@@ -1,16 +1,16 @@
-# Go module for kortex Workspace Configuration Type
+# Go module for Kaiden Workspace Configuration Type
 
 Usage:
 
 ```shell
-go get github.com/kortex-hub/kortex-cli-api/workspace-configuration/go@latest
+go get github.com/openkaiden/kdn-api/workspace-configuration/go@latest
 ```
 
 ```go
 package mypackage
 
 import (
-  workspace "github.com/kortex-hub/kortex-cli-api/workspace-configuration/go"
+  workspace "github.com/openkaiden/kdn-api/workspace-configuration/go"
 )
 
 

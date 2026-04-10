@@ -1,4 +1,4 @@
-module github.com/kortex-hub/kortex-cli-api/workspace-configuration/go
+module github.com/openkaiden/kdn-api/workspace-configuration/go
 
 go 1.25.7
 

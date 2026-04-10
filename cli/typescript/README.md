@@ -1,9 +1,9 @@
-# kortex-cli Types
+# kdn Types
 
 [![npm version](https://img.shields.io/npm/v/@kortex-hub/kortex-cli-api.svg)](https://www.npmjs.com/package/@kortex-hub/kortex-cli-api)
 [![Apache-2.0](https://shields.io/badge/license-Apache%202-yellow.svg)](https://opensource.org/license/apache-2-0)
 
-TypeScript type definitions for the [kortex-cli](https://github.com/kortex-hub/kortex-cli), providing complete type safety when interacting with JSON output returned by the CLI.
+TypeScript type definitions for the [kaiden cli](https://github.com/openkaiden/kdn), providing complete type safety when interacting with JSON output returned by the CLI.
 
 ## Installation
 

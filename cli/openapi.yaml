@@ -42,7 +42,7 @@ paths:
                 state: stopped
                 paths:
                   source: /home/user/workspace1
-                  configuration: /home/user/workspace1/.kortex
+                  configuration: /home/user/workspace1/.kaiden
         '400':
           description: Error response
           content:
@@ -71,7 +71,7 @@ paths:
                     state: running
                     paths:
                       source: /home/user/workspace1
-                      configuration: /home/user/workspace1/.kortex
+                      configuration: /home/user/workspace1/.kaiden
                   - id: 20cb499a4561703e973631fa3036cc8be9a06b709759d23a7d7f6dd1df146d95
                     name: workspace2
                     project: project2
@@ -79,10 +79,10 @@ paths:
                     state: stopped
                     paths:
                       source: /home/user/workspace2
-                      configuration: /home/user/.kortex-cli/workspaces/workspace2
+                      configuration: /home/user/.kdn/workspaces/workspace2
   /info:
     get:
-      summary: Display information about kortex-cli
+      summary: Display information about kdn
       responses:
         '200':
           description: Successful response

@@ -1,7 +1,7 @@
 {
   "name": "@kortex-hub/kortex-workspace-configuration",
   "version": "0.0.1-next",
-  "description": "TypeScript type for the kortex Workspace Configuration",
+  "description": "TypeScript type for the Kaiden Workspace Configuration",
   "repository": "https://github.com/openkaiden/kdn-api",
   "publishConfig": {
     "provenance": true,

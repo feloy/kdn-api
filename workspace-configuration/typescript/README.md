@@ -1,9 +1,9 @@
-# kortex Workspace Configuration Type
+# Kaiden Workspace Configuration Type
 
 [![npm version](https://img.shields.io/npm/v/@kortex-hub/kortex-workspace-configuration.svg)](https://www.npmjs.com/package/@kortex-hub/kortex-workspace-configuration)
 [![Apache-2.0](https://shields.io/badge/license-Apache%202-yellow.svg)](https://opensource.org/license/apache-2-0)
 
-TypeScript type definitions for the Kortex Workspace Configuration.
+TypeScript type definitions for the Kaiden Workspace Configuration.
 
 ## Installation
 

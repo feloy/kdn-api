@@ -33,6 +33,18 @@ paths:
                 skills:
                   - /path/to/skill1
                   - /path/to/skill2
+                mcp:
+                  servers:
+                    - name: "github"
+                      url: "https://api.githubcopilot.com/mcp"
+                      headers:
+                        HEADER1: "value1"
+                  commands:
+                    - name: "playwright"
+                      command: "npx"
+                      args: ["-y", "@microsoft/mcp-server-playwright"]
+                      env:
+                        VAR1: "value1"
 components:
   schemas:
     WorkspaceConfiguration:
@@ -53,6 +65,66 @@ components:
           items:
             type: string
           description: List of folders containing skills (SKILL.md and related files) to be provided to the agent.
+        mcp:
+          $ref: '#/components/schemas/McpConfiguration'
+
+    McpConfiguration:
+      type: object
+      additionalProperties: false
+      properties:
+        servers:
+          type: array
+          items:
+            $ref: '#/components/schemas/McpServer'
+          description: List of URL-based MCP servers
+        commands:
+          type: array
+          items:
+            $ref: '#/components/schemas/McpCommand'
+          description: List of command-based MCP servers
+
+    McpServer:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - url
+      properties:
+        name:
+          type: string
+          description: Name of the MCP server
+        url:
+          type: string
+          description: URL of the MCP server
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: HTTP headers to send with requests to the MCP server
+
+    McpCommand:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - command
+      properties:
+        name:
+          type: string
+          description: Name of the MCP server
+        command:
+          type: string
+          description: Command to run to start the MCP server
+        args:
+          type: array
+          items:
+            type: string
+          description: Arguments to pass to the command
+        env:
+          type: object
+          additionalProperties:
+            type: string
+          description: Environment variables to set for the command
 
     Mount:
       type: object

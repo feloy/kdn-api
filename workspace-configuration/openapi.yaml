@@ -65,6 +65,10 @@ paths:
                       - "api.staging.example.com"
                     header: "Authorization"
                     headerTemplate: "Bearer ${value}"
+                features:
+                  "ghcr.io/devcontainers/features/node:1": {}
+                  "ghcr.io/devcontainers/features/python:1":
+                    version: "3.11"
 components:
   schemas:
     WorkspaceConfiguration:
@@ -94,6 +98,12 @@ components:
           items:
             $ref: '#/components/schemas/Secret'
           description: List of secrets to inject into the workspace.
+        features:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: true
+          description: Features to add to the workspace, compatible with devcontainers features (https://containers.dev/implementors/features/). Keys are feature identifiers (e.g. OCI image references), values are feature-specific options.
 
     NetworkConfiguration:
       type: object

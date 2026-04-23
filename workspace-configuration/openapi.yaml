@@ -51,20 +51,8 @@ paths:
                     - "api.example.com"
                     - "registry.npmjs.org"
                 secrets:
-                  - type: "github"
-                    value: "ghp_xxxxxxxxxxxx"
-                  - type: "slack"
-                    name: "slack-bot"
-                    value: "xoxb-xxxxxxxxxxxx"
-                  - type: "other"
-                    name: "custom-api"
-                    value: "my-secret-value"
-                    path: "/api/v1"
-                    hosts:
-                      - "api.example.com"
-                      - "api.staging.example.com"
-                    header: "Authorization"
-                    headerTemplate: "Bearer ${value}"
+                  - "my-github-secret"
+                  - "my-other-secret"
                 features:
                   "ghcr.io/devcontainers/features/node:1": {}
                   "ghcr.io/devcontainers/features/python:1":
@@ -96,8 +84,8 @@ components:
         secrets:
           type: array
           items:
-            $ref: '#/components/schemas/Secret'
-          description: List of secrets to inject into the workspace.
+            type: string
+          description: List of secret names to inject into the workspace.
         features:
           type: object
           additionalProperties:
@@ -121,37 +109,6 @@ components:
           items:
             type: string
           description: List of hostnames to allow in deny mode.
-
-    Secret:
-      type: object
-      additionalProperties: false
-      required:
-        - type
-        - value
-      properties:
-        type:
-          type: string
-          description: Type of the secret (e.g. github, slack, other)
-        name:
-          type: string
-          description: Optional name of the secret
-        value:
-          type: string
-          description: Value of the secret
-        path:
-          type: string
-          description: Path for the secret (only applicable when type is 'other')
-        hosts:
-          type: array
-          items:
-            type: string
-          description: List of hosts for the secret (only applicable when type is 'other')
-        header:
-          type: string
-          description: Name of the HTTP header (only applicable when type is 'other')
-        headerTemplate:
-          type: string
-          description: Template to format the header value (only applicable when type is 'other')
 
     McpConfiguration:
       type: object

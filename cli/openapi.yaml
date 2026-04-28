@@ -253,6 +253,7 @@ paths:
               example:
                 items:
                   - name: github
+                    description: "GitHub API"
                     hostPattern: "api.github.com"
                     headerName: "Authorization"
                     headerTemplate: "Bearer ${value}"
@@ -406,6 +407,8 @@ components:
       additionalProperties: false
       properties:
         name:
+          type: string
+        description:
           type: string
         hostPattern:
           type: string

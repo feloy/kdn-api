@@ -39,6 +39,7 @@ paths:
                 project: project1
                 agent: claude
                 model: model1
+                runtime: podman
                 state: stopped
                 paths:
                   source: /home/user/workspace1
@@ -75,6 +76,7 @@ paths:
                     project: project1
                     agent: claude
                     model: model1
+                    runtime: podman
                     state: running
                     paths:
                       source: /home/user/workspace1
@@ -90,6 +92,7 @@ paths:
                     name: workspace2
                     project: project2
                     agent: claude
+                    runtime: podman
                     state: stopped
                     paths:
                       source: /home/user/workspace2
@@ -384,6 +387,8 @@ components:
           type: string
         model:
           type: string
+        runtime:
+          type: string
         state:
           $ref: '#/components/schemas/WorkspaceState'
         paths:
@@ -406,6 +411,7 @@ components:
       - name
       - project
       - agent
+      - runtime
       - state
       - paths
       - timestamps

@@ -260,6 +260,78 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 error: "Error: secret not found: my-secret"
+  /provider/create:
+    get:
+      summary: Create a provider connection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderName'
+              example:
+                name: my-anthropic
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: provider already exists: my-anthropic"
+  /provider/list:
+    get:
+      summary: List provider connections
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvidersList'
+              example:
+                items:
+                  - name: my-anthropic
+                    type: anthropic
+                    params:
+                      - name: token
+                        value: my-anthropic/token
+                  - name: my-vertexai
+                    type: vertexai
+                    params:
+                      - name: project
+                        value: my-project
+                      - name: region
+                        value: us-central1
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: failed to list provider connections"
+  /provider/remove:
+    get:
+      summary: Remove a provider connection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderName'
+              example:
+                name: my-anthropic
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: provider not found: my-anthropic"
   /runtime/list:
     get:
       summary: List runtimes
@@ -487,6 +559,51 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SecretInfo'
+      required:
+      - items
+    ProviderName:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    ProviderParam:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+      - value
+    ProviderInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        params:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderParam'
+      required:
+      - name
+      - type
+      - params
+    ProvidersList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderInfo'
       required:
       - items
     SecretService:

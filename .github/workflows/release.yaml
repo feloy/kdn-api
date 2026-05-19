@@ -50,7 +50,13 @@ jobs:
       - name: setup Go
         uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
         with:
-          go-version-file: 'cli/go/go.mod'          
+          go-version-file: 'cli/go/go.mod'
+
+      - name: setup Rust
+        uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+
+      - name: Install cargo-typify
+        run: cargo install cargo-typify
 
       - name: Generate tag utilities
         id: TAG_UTIL
@@ -76,6 +82,18 @@ jobs:
 
           # add generated file for workspace configuration
           git add workspace-configuration/go/workspace.go
+
+          # Generate the Rust types for kdn
+          (cd cli/rust && make gen)
+
+          # add generated file for kdn
+          git add cli/rust/src/lib.rs
+
+          # Generate the Rust types for workspace configuration
+          (cd workspace-configuration/rust && make gen)
+
+          # add generated file for workspace configuration
+          git add workspace-configuration/rust/src/lib.rs
 
           # commit the changes
           git commit -m "chore: 🥁 tagging ${{ steps.TAG_UTIL.outputs.githubTag }} 🥳"

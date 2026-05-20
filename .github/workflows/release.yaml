@@ -56,7 +56,7 @@ jobs:
         uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
 
       - name: Install cargo-typify
-        run: cargo install cargo-typify
+        run: cargo install --version 0.6.2 cargo-typify
 
       - name: Generate tag utilities
         id: TAG_UTIL

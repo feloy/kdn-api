@@ -20,10 +20,10 @@ all: gen
 
 gen: clean
 	mkdir -p src
+	$(eval SCHEMA_TMP := $(shell mktemp "$${TMPDIR:-/tmp}/gen-schema.XXXXXX"))
 	yq -o json '{"$$schema": "http://json-schema.org/draft-07/schema#", "definitions": .components.schemas}' \
-		../openapi.yaml | sed 's|#/components/schemas/|#/definitions/|g' > /tmp/gen-schema.yaml
-	cargo typify /tmp/gen-schema.yaml --output src/lib.rs
-	rm /tmp/gen-schema.yaml
+		../openapi.yaml | sed 's|#/components/schemas/|#/definitions/|g' > $(SCHEMA_TMP)
+	cargo typify $(SCHEMA_TMP) --output src/lib.rs; rm -f $(SCHEMA_TMP)
 
 clean:
 	rm -f src/lib.rs
